@@ -176,13 +176,21 @@ async def respond_to_trade_offer(
     if not offer:
         raise HTTPException(status_code=404, detail="Trade offer not found")
 
-    if offer.produce_lot.farmer_id != current_user.id:
+    if offer.produce_lot.farmer_id != current_user.id and current_user.role != UserRole.ADMIN:
         raise HTTPException(status_code=403, detail="Not authorized to respond to this offer")
 
     if offer.produce_lot.status == ProduceStatus.SOLD:
         raise HTTPException(status_code=400, detail="Produce lot has already been sold")
 
     offer.status = response_in.status
+
+    # Handle counter offer modifications
+    if response_in.offered_price_per_kg is not None:
+        offer.offered_price_per_kg = response_in.offered_price_per_kg
+    if response_in.offered_quantity_kg is not None:
+        offer.offered_quantity_kg = response_in.offered_quantity_kg
+    
+    offer.total_offer_value = round(offer.offered_price_per_kg * offer.offered_quantity_kg, 2)
 
     if response_in.status == OfferStatus.ACCEPTED:
         # Update produce lot status to UNDER_NEGOTIATION
@@ -214,4 +222,11 @@ async def respond_to_trade_offer(
 
     await db.commit()
     await db.refresh(offer)
-    return offer
+
+    # Re-fetch with all relations loaded for serialization
+    query_offer = select(TradeOffer).where(TradeOffer.id == offer.id).options(
+        selectinload(TradeOffer.buyer),
+        selectinload(TradeOffer.produce_lot).selectinload(ProduceLot.farmer)
+    )
+    res_offer = await db.execute(query_offer)
+    return res_offer.scalars().first()

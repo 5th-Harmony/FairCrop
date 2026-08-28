@@ -1,15 +1,15 @@
 import enum
 import datetime
-# pyrefly: ignore [missing-import]
 from sqlalchemy import (
-    Column, Integer, String, Float, DateTime, Enum, ForeignKey, Text, Boolean, JSON, Table
+    Column, Integer, String, Float, DateTime, Enum, ForeignKey, Text, Boolean, JSON
 )
-# pyrefly: ignore [missing-import]
 from sqlalchemy.orm import relationship
 from app.database import Base
 
 
-# --- Enums ---
+# ══════════════════════════════════════════════════════════════
+# ENUMS
+# ══════════════════════════════════════════════════════════════
 
 class UserRole(str, enum.Enum):
     FARMER = "FARMER"
@@ -74,7 +74,9 @@ class GrievanceStatus(str, enum.Enum):
     CLOSED = "CLOSED"
 
 
-# --- Models ---
+# ══════════════════════════════════════════════════════════════
+# DATABASE MODELS
+# ══════════════════════════════════════════════════════════════
 
 class User(Base):
     __tablename__ = "users"
@@ -92,12 +94,14 @@ class User(Base):
     company_name = Column(String, nullable=True)
     gstin_or_registration = Column(String, nullable=True)
 
-    # Address / Location
+    # Address / Geo Location
     state = Column(String, nullable=False)
     district = Column(String, nullable=False)
     sub_district = Column(String, nullable=True)
     village = Column(String, nullable=True)
     pincode = Column(String, nullable=False)
+    latitude = Column(Float, nullable=True)
+    longitude = Column(Float, nullable=True)
 
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
@@ -127,7 +131,7 @@ class ProduceLot(Base):
     storage_location = Column(String, nullable=False)
     state = Column(String, index=True, nullable=False)
     district = Column(String, index=True, nullable=False)
-    image_urls = Column(JSON, default=list)  # List of image S3/Cloud links
+    image_urls = Column(JSON, default=list)  # List of image URLs
     status = Column(Enum(ProduceStatus), default=ProduceStatus.AVAILABLE, nullable=False)
     
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
@@ -191,6 +195,7 @@ class Transaction(Base):
     payment_reference = Column(String, nullable=True)
     delivery_address = Column(Text, nullable=False)
     expected_delivery_date = Column(DateTime, nullable=True)
+    tracking_number = Column(String, nullable=True)
 
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
@@ -221,3 +226,15 @@ class Grievance(Base):
     # Relationships
     transaction = relationship("Transaction", back_populates="grievances")
     raised_by = relationship("User", back_populates="grievances_raised")
+
+
+class Translation(Base):
+    __tablename__ = "translations"
+
+    id = Column(Integer, primary_key=True, index=True)
+    lang_code = Column(String, index=True, nullable=False)
+    key = Column(String, index=True, nullable=False)
+    translation = Column(Text, nullable=False)
+    category = Column(String, default="ui", index=True)
+
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)

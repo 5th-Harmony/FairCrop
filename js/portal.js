@@ -674,7 +674,7 @@
         </div>
 
         ${advisory ? `
-          <div class="advisory-card-widget ${advisory.recommended_sale_window.toLowerCase().includes('hold') ? 'hold' : 'sell'}">
+          <div class="advisory-card-widget ${advisory.recommended_sale_window.toLowerCase().includes('hold') ? 'hold' : 'sell'}" style="margin: 24px 0;">
             <div class="adv-badge">🤖 AI Advisory Recommendation</div>
             <div class="adv-headline">${advisory.recommended_sale_window}</div>
             <div class="adv-desc">${advisory.advice_summary}</div>
@@ -686,7 +686,7 @@
           </div>
         ` : ''}
 
-        <div class="portal-grid-2" style="margin-top:20px;">
+        <div class="portal-grid-2" style="margin-top:24px;">
           <!-- Quick Produce Section -->
           <div class="portal-box">
             <div class="portal-box-hdr">

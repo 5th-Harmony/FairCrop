@@ -230,6 +230,26 @@
     return request('GET', `/intelligence/search?${p}`);
   }
 
+  async function getMandiHubs() {
+    return request('GET', '/intelligence/mandi-hubs');
+  }
+
+  async function getMandiHubDetail(cityOrMandi) {
+    return request('GET', `/intelligence/mandi-hub/${encodeURIComponent(cityOrMandi)}`);
+  }
+
+  async function getSchemes() {
+    return request('GET', '/intelligence/schemes');
+  }
+
+  async function getSchemeDetail(schemeId) {
+    return request('GET', `/intelligence/schemes/${encodeURIComponent(schemeId)}`);
+  }
+
+  async function getCommodityDetail(cropName) {
+    return request('GET', `/intelligence/commodity/${encodeURIComponent(cropName)}`);
+  }
+
   /* ── 7. Grievances & Disputes ────────────────────────────── */
   async function createGrievance({ transaction_id, category, title, description, evidence_images = [] }) {
     return request('POST', '/grievances/', {
@@ -274,6 +294,7 @@
     getTransactions, getTransaction, updateTransactionStatus,
     // Intelligence
     getStats, getLiveUpdates, getMandiPrices, getForecast, search,
+    getMandiHubs, getMandiHubDetail, getSchemes, getSchemeDetail, getCommodityDetail,
     // Grievances
     createGrievance, getGrievances, resolveGrievance,
     // Health
@@ -281,3 +302,4 @@
   };
 
 })();
+

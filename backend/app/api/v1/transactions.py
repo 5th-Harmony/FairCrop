@@ -51,7 +51,7 @@ async def get_transaction_details(
 
     if not tx:
         raise HTTPException(status_code=404, detail="Transaction not found")
-    if tx.buyer_id != current_user.id and tx.seller_id != current_user.id and current_user.role != UserRole.ADMIN:
+    if tx.buyer_id != current_user.id and tx.seller_id != current_user.id and current_user.role not in [UserRole.ADMIN, UserRole.LOGISTICS]:
         raise HTTPException(status_code=403, detail="Not authorized to view this transaction")
 
     return tx
@@ -72,12 +72,14 @@ async def update_escrow_status(
     if not tx:
         raise HTTPException(status_code=404, detail="Transaction not found")
 
-    if tx.buyer_id != current_user.id and tx.seller_id != current_user.id and current_user.role != UserRole.ADMIN:
+    if tx.buyer_id != current_user.id and tx.seller_id != current_user.id and current_user.role not in [UserRole.ADMIN, UserRole.LOGISTICS]:
         raise HTTPException(status_code=403, detail="Not authorized to update this transaction")
 
     tx.status = status_in.status
     if status_in.payment_reference:
         tx.payment_reference = status_in.payment_reference
+    if status_in.tracking_number:
+        tx.tracking_number = status_in.tracking_number
 
     # Handle ProduceLot status based on transaction outcome
     if tx.trade_offer:

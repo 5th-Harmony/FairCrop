@@ -7,7 +7,9 @@ from app.models import (
 )
 
 
-# --- User Schemas ---
+# ══════════════════════════════════════════════════════════════
+# USER SCHEMAS
+# ══════════════════════════════════════════════════════════════
 
 class UserBase(BaseModel):
     email: EmailStr
@@ -22,6 +24,8 @@ class UserBase(BaseModel):
     sub_district: Optional[str] = None
     village: Optional[str] = None
     pincode: str
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 
 class UserCreate(UserBase):
@@ -33,9 +37,14 @@ class UserUpdate(BaseModel):
     phone_number: Optional[str] = None
     fpo_name: Optional[str] = None
     company_name: Optional[str] = None
+    gstin_or_registration: Optional[str] = None
     state: Optional[str] = None
     district: Optional[str] = None
+    sub_district: Optional[str] = None
+    village: Optional[str] = None
     pincode: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 
 class UserVerificationUpdate(BaseModel):
@@ -51,7 +60,9 @@ class UserResponse(UserBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-# --- Token Schemas ---
+# ══════════════════════════════════════════════════════════════
+# AUTH / TOKEN SCHEMAS
+# ══════════════════════════════════════════════════════════════
 
 class Token(BaseModel):
     access_token: str
@@ -64,7 +75,9 @@ class TokenData(BaseModel):
     role: Optional[UserRole] = None
 
 
-# --- Produce Lot Schemas ---
+# ══════════════════════════════════════════════════════════════
+# PRODUCE LOT SCHEMAS
+# ══════════════════════════════════════════════════════════════
 
 class ProduceLotBase(BaseModel):
     crop_name: str
@@ -92,7 +105,11 @@ class ProduceLotUpdate(BaseModel):
     price_per_kg_expected: Optional[float] = Field(None, gt=0)
     grade: Optional[ProduceGrade] = None
     moisture_percentage: Optional[float] = None
+    harvest_date: Optional[datetime.datetime] = None
+    expiry_date: Optional[datetime.datetime] = None
     storage_location: Optional[str] = None
+    state: Optional[str] = None
+    district: Optional[str] = None
     image_urls: Optional[List[str]] = None
     status: Optional[ProduceStatus] = None
 
@@ -107,7 +124,9 @@ class ProduceLotResponse(ProduceLotBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-# --- Market Price & ML Forecast Schemas ---
+# ══════════════════════════════════════════════════════════════
+# MARKET PRICE & FORECAST SCHEMAS
+# ══════════════════════════════════════════════════════════════
 
 class MarketPriceBase(BaseModel):
     state: str
@@ -151,7 +170,9 @@ class PriceForecastResponse(BaseModel):
     advice_summary: str
 
 
-# --- Trade Offer Schemas ---
+# ══════════════════════════════════════════════════════════════
+# TRADE OFFER SCHEMAS
+# ══════════════════════════════════════════════════════════════
 
 class TradeOfferBase(BaseModel):
     produce_lot_id: int
@@ -183,7 +204,9 @@ class TradeOfferResponse(TradeOfferBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-# --- Transaction Schemas ---
+# ══════════════════════════════════════════════════════════════
+# TRANSACTION SCHEMAS
+# ══════════════════════════════════════════════════════════════
 
 class TransactionCreate(BaseModel):
     trade_offer_id: int
@@ -194,6 +217,7 @@ class TransactionCreate(BaseModel):
 class TransactionStatusUpdate(BaseModel):
     status: TransactionStatus
     payment_reference: Optional[str] = None
+    tracking_number: Optional[str] = None
 
 
 class TransactionResponse(BaseModel):
@@ -207,6 +231,7 @@ class TransactionResponse(BaseModel):
     payment_reference: Optional[str] = None
     delivery_address: str
     expected_delivery_date: Optional[datetime.datetime] = None
+    tracking_number: Optional[str] = None
     created_at: datetime.datetime
     updated_at: datetime.datetime
 
@@ -217,7 +242,9 @@ class TransactionResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-# --- Grievance Schemas ---
+# ══════════════════════════════════════════════════════════════
+# GRIEVANCE / DISPUTE SCHEMAS
+# ══════════════════════════════════════════════════════════════
 
 class GrievanceCreate(BaseModel):
     transaction_id: int
