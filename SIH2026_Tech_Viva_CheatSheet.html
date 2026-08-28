@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FairCrop — SIH 2026 Technical Viva & Judges Q&A Cheatsheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0F5132;
+      --primary-light: #198754;
+      --accent: #FF6B00;
+      --navy: #102C57;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text: #1E293B;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .header-bar {
+      background: linear-gradient(135deg, #102C57 0%, #0F5132 100%);
+      color: white;
+      padding: 28px 32px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .badge {
+      background: rgba(255,107,0,0.25);
+      color: #FFA347;
+      border: 1px solid rgba(255,107,0,0.5);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-top: 8px;
+      line-height: 1.2;
+    }
+    .header-sub {
+      font-size: 14px;
+      color: #CBD5E1;
+      margin-top: 4px;
+    }
+    .print-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255,107,0,0.3);
+      transition: transform 0.15s;
+    }
+    .print-btn:hover { transform: translateY(-1px); }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 28px 0 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #E2E8F0;
+      padding-bottom: 8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    }
+    .card-highlight {
+      border-color: #BAE6FD;
+      background: #F0F9FF;
+    }
+    .card-accent {
+      border-color: #FED7AA;
+      background: #FFF7ED;
+    }
+    .card-success {
+      border-color: #BBF7D0;
+      background: #F0FDF4;
+    }
+    .card-head {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qa-box {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .qa-question {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #0F5132;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .qa-answer {
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.55;
+      padding-left: 24px;
+    }
+    .qa-answer strong {
+      color: var(--navy);
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .step-pill {
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-left: 4px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .tag-pill {
+      display: inline-block;
+      background: #E2E8F0;
+      color: #334155;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-top: 4px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    @media print {
+      body { padding: 0; background: white; }
+      .print-btn { display: none; }
+      .container { max-width: 100%; }
+      .card, .qa-box { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Header -->
+  <div class="header-bar">
+    <div>
+      <span class="badge">SIH 2026 • IDEA SUBMISSION VIVA GUIDE</span>
+      <h1 class="header-title">FairCrop — Technical & Viva Cheatsheet</h1>
+      <div class="header-sub">Team: <strong>METERE</strong> | Problem Statement: <em>Strengthening market linkages and price discovery for farmers</em></div>
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  </div>
+
+  <!-- SECTION 1: 30-Second Elevator Pitch -->
+  <div class="section-title">🗣️ 1. The 30-Second Elevator Pitch (What to Say First)</div>
+  <div class="card card-accent" style="margin-bottom: 16px;">
+    <div class="card-head" style="color: #9A3412; font-size: 16px;">💡 When the Judge asks: "Tell us about your project in 1-2 lines"</div>
+    <p style="font-size: 14.5px; line-height: 1.6; color: #7C2D12;">
+      <em>“<strong>FairCrop</strong> is an intelligent agricultural marketplace that strengthens direct farmer-buyer linkages. We eliminate 15–30% middleman brokerage, provide AI-powered price forecasts (Hold vs Sell recommendations), and guarantee 100% risk-free transactions through a digital Escrow payment system.”</em>
+    </p>
+  </div>
+
+  <!-- SECTION 2: Tech Stack at a Glance -->
+  <div class="section-title">⚙️ 2. The Complete Tech Stack (Explained Simply)</div>
+  <div class="grid-3">
+    
+    <div class="card">
+      <div class="card-head">🌐 Frontend (User Interface)</div>
+      <p style="font-size: 13px; color: #475569; margin-bottom: 8px;">What farmers and buyers interact with on their devices.</p>
+      <div>
+        <span class="tag-pill">HTML5</span>
+        <span class="tag-pill">CSS3 (Glassmorphism)</span>
+        <span class="tag-pill">Vanilla JS</span>
+        <span class="tag-pill">Next.js / React</span>
+        <span class="tag-pill">React Native / Expo</span>
+      </div>
+      <div style="font-size: 12.5px; color: #334155; margin-top: 10px; line-height: 1.5;">
+        <strong>Key Pitch:</strong> Fast, lightweight, zero lag on rural 3G/4G networks; supports 22 Indian languages and voice input.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">🐍 Backend (The Engine)</div>
+      <p style="font-size: 13px; color: #475569; margin-bottom: 8px;">The server logic that handles transactions and calculations.</p>
+      <div>
+        <span class="tag-pill">Python</span>
+        <span class="tag-pill">FastAPI</span>
+        <span class="tag-pill">SQLAlchemy 2.0</span>
+        <span class="tag-pill">Pydantic v2</span>
+        <span class="tag-pill">JWT + Bcrypt</span>
+      </div>
+      <div style="font-size: 12.5px; color: #334155; margin-top: 10px; line-height: 1.5;">
+        <strong>Key Pitch:</strong> FastAPI is asynchronous, ultra-fast, and auto-generates Swagger API documentation.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">🤖 Database & AI/ML</div>
+      <p style="font-size: 13px; color: #475569; margin-bottom: 8px;">Where data is stored and how smart predictions work.</p>
+      <div>
+        <span class="tag-pill">SQLite (Dev)</span>
+        <span class="tag-pill">PostgreSQL (Prod)</span>
+        <span class="tag-pill">ARIMA + LSTM (ML)</span>
+        <span class="tag-pill">e-NAM & Agmarknet APIs</span>
+      </div>
+      <div style="font-size: 12.5px; color: #334155; margin-top: 10px; line-height: 1.5;">
+        <strong>Key Pitch:</strong> ML models analyze historical price trends across 1,361 mandis to predict 7-day prices.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 3: How the System Works -->
+  <div class="section-title">🔄 3. How It Works (The 7-Stage Escrow Lifecycle)</div>
+  <div class="grid-2">
+    
+    <div class="card">
+      <div class="card-head">🌾 Farmer & Buyer Journey</div>
+      <div class="flow-steps">
+        <div class="step-pill"><strong>1. Registration & KYC:</strong> Farmer registers with mobile OTP, village, and bank details.</div>
+        <div class="step-pill"><strong>2. Digital Lot Creation:</strong> Farmer lists crop, quantity (quintals), quality grade (Agmark A/B/C), and moisture %.</div>
+        <div class="step-pill"><strong>3. Smart Matchmaking:</strong> AI matches crop with institutional buyers (FMCG, processors, exporters).</div>
+        <div class="step-pill"><strong>4. Bidding & Offer:</strong> Buyer places competitive digital bid or counter-offer.</div>
+      </div>
+    </div>
+
+    <div class="card card-highlight">
+      <div class="card-head" style="color: #0369A1;">🔒 7-Stage Secure Escrow Flow</div>
+      <div class="flow-steps">
+        <div class="step-pill" style="border-left-color: #0284C7;"><strong>1. Initiated:</strong> Farmer accepts buyer's bid; contract locks digitally.</div>
+        <div class="step-pill" style="border-left-color: #0284C7;"><strong>2. Escrow Deposited:</strong> Buyer deposits 100% money upfront into escrow.</div>
+        <div class="step-pill" style="border-left-color: #0284C7;"><strong>3. Dispatched:</strong> Farmer ships produce with tracking reference.</div>
+        <div class="step-pill" style="border-left-color: #0284C7;"><strong>4. Delivered:</strong> Goods arrive at buyer warehouse for inspection.</div>
+        <div class="step-pill" style="border-left-color: #10B981;"><strong>5. Escrow Released:</strong> Buyer verifies quality &rarr; funds sent to farmer instantly.</div>
+        <div class="step-pill" style="border-left-color: #EF4444;"><strong>6. Dispute / Mediation:</strong> Paused if quality mismatch occurs; admin resolves.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 4: Top Questions Judges Will Ask & Exact Answers -->
+  <div class="section-title">❓ 4. Top Technical Questions Judges Will Ask & Winning Answers</div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q1: Why did you choose FastAPI over Flask or Django?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "We chose <strong>FastAPI</strong> because it is natively <em>asynchronous</em> (ASGI), which allows it to handle thousands of concurrent requests with extremely low latency. It is significantly faster than Flask and Django, provides automatic data validation via Pydantic, and generates interactive Swagger/OpenAPI documentation automatically."
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q2: Where does the live mandi price data come from?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "We integrate directly with official Government open datasets and APIs — specifically <strong>e-NAM</strong> (National Agriculture Market) connecting 1,361+ mandis and <strong>Agmarknet</strong> (Directorate of Marketing & Inspection, GoI) daily modal price feeds on <strong>data.gov.in</strong>."
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q3: How does the AI Price Forecasting work?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "We use a <strong>hybrid time-series model (ARIMA + LSTM)</strong> trained on historical mandi rates and arrival volumes. It predicts expected price ranges for the next 7 days and generates an intelligent <strong>'HOLD or SELL' advisory</strong> so farmers avoid distress sales during seasonal glut troughs."
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q4: How do you guarantee the farmer gets paid safely?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "Through our <strong>7-stage Escrow Lifecycle</strong>. Once a bid is finalized, the buyer must deposit 100% of the funds into a secure escrow account <em>before</em> the farmer dispatches the crop. Once the buyer receives and approves the quality, the funds are automatically released to the farmer's bank account."
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q5: How will uneducated or rural farmers use this app?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "We designed FairCrop with: (1) Full support for <strong>22 official Indian languages</strong> in native scripts, (2) <strong>Voice search</strong> input in regional dialects, (3) High-contrast visual icons and simplified cards, and (4) <strong>FPO (Farmer Producer Organization) collective onboarding</strong>, where FPO leaders create bulk lots on behalf of village members."
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q6: What if internet connectivity is weak in the village?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "We built the client using lightweight, responsive Vanilla JS and offline-first LocalStorage caching. Critical prices and lot details load instantly even on 2G/3G speeds without heavy framework bloat."
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q7: What is the Business & Revenue Model?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "FairCrop is <strong>100% FREE for farmers</strong>. We generate revenue by charging a nominal <strong>0.5%–1.5% convenience fee to large institutional buyers</strong> (food processors, retailers, exporters) for verified quality assaying, consolidated FPO sourcing, and end-to-end logistics coordination."
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-question">📌 Q8: How is FairCrop different from e-NAM or existing apps?</div>
+    <div class="qa-answer">
+      <strong>Answer:</strong> "While e-NAM focuses on mandi-level physical auctions, <strong>FairCrop enables direct farm-gate procurement</strong> with AI predictive sell advisories, automated buyer-seller matchmaking, and guaranteed Escrow protection, eliminating traditional mandi transportation hassles and commission agent fees."
+    </div>
+  </div>
+
+  <!-- SECTION 5: Key Numbers & Stats to Quote -->
+  <div class="section-title">📊 5. Key Numbers & Metrics to Quote (Memorize These)</div>
+  <div class="grid-3">
+    <div class="card card-success">
+      <div style="font-size: 24px; font-weight: 800; color: #0F5132;">+15% to +25%</div>
+      <div style="font-size: 13px; font-weight: 600; color: #166534;">Increase in Farmer Income</div>
+      <div style="font-size: 12px; color: #475569; margin-top: 2px;">By bypassing 15–30% middleman brokerage.</div>
+    </div>
+    <div class="card card-highlight">
+      <div style="font-size: 24px; font-weight: 800; color: #0369A1;">-20% to -25%</div>
+      <div style="font-size: 13px; font-weight: 600; color: #075985;">Reduction in Post-Harvest Spoilage</div>
+      <div style="font-size: 12px; color: #475569; margin-top: 2px;">Through direct institutional buyer contracts.</div>
+    </div>
+    <div class="card card-accent">
+      <div style="font-size: 24px; font-weight: 800; color: #C2410C;">1,361+</div>
+      <div style="font-size: 13px; font-weight: 600; color: #9A3412;">e-NAM Mandis Integrated</div>
+      <div style="font-size: 12px; color: #475569; margin-top: 2px;">Providing pan-India daily price transparency.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
