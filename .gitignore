@@ -29,3 +29,7 @@ web/tsconfig.tsbuildinfo
 *.log
 scratch/
 .tempmediaStorage/
+
+# Presentations
+*.pptx
+*.ppt
