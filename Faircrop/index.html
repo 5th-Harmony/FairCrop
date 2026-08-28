@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FairCrop.in — Strengthening Market Linkages for Farmers | SIH 2026</title>
+  <meta name="description" content="FairCrop.in is India's transparent agricultural price discovery platform connecting farmers to fair markets through real-time data. Smart India Hackathon 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STICKY HEADER
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="sticky-header">
+    <!-- Government Strip -->
+    <div class="gov-strip" role="banner" aria-label="Government information">
+      <div class="gov-strip-left">
+        <div class="tribar" aria-hidden="true"></div>
+        <span>भारत सरकार &nbsp;|&nbsp; Government of India Initiative &nbsp;|&nbsp; Smart India Hackathon 2026</span>
+      </div>
+      <div class="gov-strip-right">
+        <a href="#" tabindex="0">Skip to main content</a>
+        <a href="#" tabindex="0">Screen Reader</a>
+        <a href="#" tabindex="0">Sitemap</a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" role="navigation" aria-label="Main navigation">
+      <!-- Logo -->
+      <a class="nav-logo clickable" href="#" id="logo-link" aria-label="FairCrop home">
+        <!-- Ashoka-inspired emblem -->
+        <div class="nav-emblem" aria-hidden="true">
+          <svg viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+            <!-- Lions (simplified) -->
+            <ellipse cx="14" cy="13" rx="5" ry="6" fill="#FF6B00" opacity="0.85"/>
+            <ellipse cx="26" cy="13" rx="5" ry="6" fill="#FF6B00" opacity="0.85"/>
+            <!-- Abacus bar -->
+            <rect x="7" y="20" width="26" height="4" rx="1" fill="#FF6B00"/>
+            <!-- Ashoka Chakra -->
+            <circle cx="20" cy="36" r="9" stroke="#FF6B00" stroke-width="1.4" fill="none"/>
+            <circle cx="20" cy="36" r="2" fill="#FF6B00"/>
+            <!-- 8 spokes -->
+            <line x1="20" y1="27" x2="20" y2="45" stroke="#FF6B00" stroke-width="0.9"/>
+            <line x1="11" y1="36" x2="29" y2="36" stroke="#FF6B00" stroke-width="0.9"/>
+            <line x1="13.6" y1="29.6" x2="26.4" y2="42.4" stroke="#FF6B00" stroke-width="0.9"/>
+            <line x1="26.4" y1="29.6" x2="13.6" y2="42.4" stroke="#FF6B00" stroke-width="0.9"/>
+          </svg>
+        </div>
+        <span class="nav-brand"><span class="nb-fai">Fai</span><span class="nb-rc">rC</span><span class="nb-rop">rop</span></span>
+      </a>
+
+      <!-- Search -->
+      <div class="nav-search" role="search">
+        <div class="nav-search-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="search" id="nav-search-input" placeholder="Search crops, mandis, prices, schemes…" aria-label="Search FairCrop"/>
+          <button class="mic-btn clickable" id="mic-btn" aria-label="Voice search" title="Voice search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Theme toggle -->
+        <button class="nav-btn clickable" id="theme-btn" aria-label="Toggle light/dark mode" title="Toggle theme">
+          <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <!-- Language -->
+        <div class="lang-wrapper">
+          <button class="nav-btn clickable devanagari-btn" id="lang-btn" aria-label="Select language" aria-haspopup="true" aria-expanded="false" title="Change language">अ</button>
+          <div class="lang-panel" id="lang-panel" role="menu" aria-label="Language selection">
+            <div class="lang-panel-hdr">Select Language / भाषा चुनें</div>
+            <div class="lang-grid" id="lang-grid"></div>
+          </div>
+        </div>
+
+        <!-- Login / User Menu -->
+        <button class="nav-btn clickable" id="login-btn" aria-label="Sign in to FairCrop" title="Sign In" style="display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:600;padding:0 10px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Sign In
+        </button>
+        <div id="nav-user-menu" style="display:none;align-items:center;gap:8px;">
+          <span style="font-size:0.8rem;font-weight:600;color:var(--saffron);" id="nav-user-name">My Account</span>
+          <button class="nav-btn clickable" id="nav-logout-btn" aria-label="Log out" title="Log out" style="font-size:0.75rem;padding:0 8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+
+        <!-- Hamburger -->
+        <button class="nav-btn clickable" id="menu-btn" aria-label="Open navigation menu" aria-expanded="false" title="Menu">
+          <div class="hbg-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+  <div class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" role="dialog">
+    <div class="drawer-hdr">
+      <span class="drawer-brand"><span>Fair</span><span>Crop</span></span>
+      <button class="drawer-close clickable" id="drawer-close" aria-label="Close menu">&#10005;</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════════════════ -->
+  <main id="main-content">
+  <section id="hero" aria-label="How FairCrop works">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+
+      <!-- Flowchart (faithful to des1 with professional SVG icons) -->
+      <div class="flowchart" role="img" aria-label="FairCrop 3-step process: Associations set prices, transparent market forms, farmers earn fair price">
+        <!-- Step 1: Associations -->
+        <div class="flow-step">
+          <div class="flow-icon" aria-hidden="true">
+            <!-- Group/People silhouette SVG -->
+            <svg viewBox="0 0 96 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- back-left person -->
+              <ellipse cx="22" cy="18" rx="11" ry="11" fill="white" opacity="0.75"/>
+              <path d="M4 66 C4 47 10 38 22 38 C34 38 40 47 40 66" fill="white" opacity="0.75"/>
+              <!-- back-right person -->
+              <ellipse cx="74" cy="18" rx="11" ry="11" fill="white" opacity="0.75"/>
+              <path d="M56 66 C56 47 62 38 74 38 C86 38 92 47 92 66" fill="white" opacity="0.75"/>
+              <!-- front-center person -->
+              <ellipse cx="48" cy="15" rx="14" ry="14" fill="white"/>
+              <path d="M24 68 C24 47 32 34 48 34 C64 34 72 47 72 68" fill="white"/>
+            </svg>
+          </div>
+          <p class="flow-lbl">Associations decide prices according to constraints and production</p>
+        </div>
+
+        <!-- Arrow 1: Curved Directional Connector -->
+        <div class="flow-arrow" aria-hidden="true">
+          <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="40">
+            <!-- Curved Flow Shaft -->
+            <path d="M 6 30 C 26 8, 64 8, 84 20" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- Sculpted Arrowhead -->
+            <path d="M 80 10 L 96 22 L 78 30 L 82 20 Z" fill="white"/>
+          </svg>
+        </div>
+
+        <!-- Step 2: Rupee / Price Transparency -->
+        <div class="flow-step">
+          <div class="flow-icon" aria-hidden="true">
+            <!-- Indian Rupee ₹ Symbol — Unicode-rendered for accuracy -->
+            <svg viewBox="0 0 92 92" xmlns="http://www.w3.org/2000/svg">
+              <text x="46" y="80" font-family="'Segoe UI', 'Noto Sans', Arial, sans-serif" font-size="78" font-weight="900" fill="white" text-anchor="middle" dominant-baseline="auto">&#x20B9;</text>
+            </svg>
+          </div>
+          <p class="flow-lbl">A fair monopoly is created by price transparency</p>
+        </div>
+
+        <!-- Arrow 2: Curved Directional Connector -->
+        <div class="flow-arrow" aria-hidden="true">
+          <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="40">
+            <!-- Curved Flow Shaft -->
+            <path d="M 6 30 C 26 8, 64 8, 84 20" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- Sculpted Arrowhead -->
+            <path d="M 80 10 L 96 22 L 78 30 L 82 20 Z" fill="white"/>
+          </svg>
+        </div>
+
+        <!-- Step 3: Farmers / Farm -->
+        <div class="flow-step">
+          <div class="flow-icon" aria-hidden="true">
+            <!-- Barn + Field Furrows + Leafy Sprout SVG matching attachment -->
+            <svg viewBox="0 0 100 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Barn Roof -->
+              <path d="M 14 40 L 50 12 L 86 40 L 82 44 L 50 18 L 18 44 Z" fill="white"/>
+              <!-- Barn Front Facade -->
+              <path d="M 22 42 H 78 V 68 H 22 Z" fill="white"/>
+              <!-- Barn Door & Window -->
+              <rect x="42" y="52" width="16" height="16" fill="#141720" rx="1"/>
+              <rect x="44" y="54" width="5.5" height="6" fill="white" opacity="0.4"/>
+              <rect x="50.5" y="54" width="5.5" height="6" fill="white" opacity="0.4"/>
+              <!-- Sprouting Plant from Roof Right -->
+              <path d="M 72 26 C 78 16 84 8 92 4 C 92 12 86 20 78 24 Z" fill="white"/>
+              <path d="M 78 20 C 86 16 94 14 98 8 C 96 16 88 24 82 26 Z" fill="white"/>
+              <path d="M 70 28 Q 78 18 90 4" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Cultivated Furrow / Field Radiating Stripes -->
+              <path d="M 8 90 L 32 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M 28 94 L 42 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M 50 96 L 50 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M 72 94 L 58 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M 92 90 L 68 72" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="flow-lbl">Farmers get the best possible price for their crops</p>
+        </div>
+      </div>
+
+      <!-- Brand name -->
+      <div class="hero-brand">
+        <h1 class="hero-title">
+          <span class="ht-fai">fai</span><span class="ht-rc">rc</span><span class="ht-rop">rop</span><span class="ht-dotin">.in</span>
+        </h1>
+        <div class="hero-tagline-pills">
+          <div class="tag-pill">
+            <span class="tag-dot saffron"></span>
+            <span>Empowering Farmers</span>
+          </div>
+          <div class="tag-pill">
+            <span class="tag-dot green"></span>
+            <span>Fair Prices</span>
+          </div>
+          <div class="tag-pill">
+            <span class="tag-dot gold"></span>
+            <span>Real Markets</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search bar -->
+      <div class="hero-search-outer">
+        <div class="cat-wrap">
+          <div class="hero-search-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="hero-search" placeholder="Search for crops, mandis, prices, government schemes…" aria-label="Search FairCrop"/>
+            <div class="hero-divider" aria-hidden="true"></div>
+            <button class="hero-cat-btn clickable" id="hero-cat-btn" aria-haspopup="true" aria-expanded="false">
+              All Categories
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+          <div class="cat-panel" id="cat-panel" role="menu">
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Vegetables
+            </div>
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/></svg> Cereals &amp; Grains
+            </div>
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Pulses &amp; Legumes
+            </div>
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Fruits
+            </div>
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12"/><path d="M12 6v6l4 2"/></svg> Spices &amp; Herbs
+            </div>
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Govt. Schemes
+            </div>
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Mandi Prices
+            </div>
+            <div class="cat-row clickable" role="menuitem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Mandi Locator
+            </div>
+          </div>
+        </div>
+      </div><!-- /hero-search-outer -->
+
+      <!-- Formal Scroll Direction Indicator -->
+      <button class="scroll-cue clickable" id="scroll-cue-btn" aria-label="Scroll down to explore features">
+        <span class="scroll-text">Scroll Down</span>
+        <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18" aria-hidden="true">
+          <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+    </div><!-- /hero-content -->
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 2a — STATS BAR
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="stats-bar" class="stats-bar reveal" role="region" aria-label="Platform key statistics">
+    <!-- Registered Farmers -->
+    <div class="stat-item clickable">
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="34" height="34">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          <path d="M16 3.5 Q18 2 20 3.5 Q22 5 21 8 Q20 10 18 10.5" stroke-dasharray="2 1"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-num" data-count="128450">0</span>
+        <span class="stat-lbl">Registered Farmers</span>
+      </div>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+
+    <!-- Daily Price Updates -->
+    <div class="stat-item clickable">
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="34" height="34">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-num" data-count="8640">0</span>
+        <span class="stat-lbl">Daily Price Updates</span>
+      </div>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+
+    <!-- Crops Listed -->
+    <div class="stat-item clickable">
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="34" height="34">
+          <path d="M12 22V12"/><path d="M12 12C12 12 14 7 19 6"/>
+          <path d="M12 12C12 12 10 7 5 6"/>
+          <path d="M12 17C12 17 15 14 20 14"/>
+          <path d="M12 17C12 17 9 14 4 14"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-num" data-count="340">0</span>
+        <span class="stat-lbl">Crops Listed</span>
+      </div>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+
+    <!-- Mandis Connected -->
+    <div class="stat-item clickable">
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="34" height="34">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-num" id="stat-mandis" data-count="2400">0</span>
+        <span class="stat-lbl">Mandis Connected</span>
+      </div>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+
+    <!-- Price Alerts -->
+    <div class="stat-item clickable">
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="34" height="34">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-num" id="stat-farmers" data-count="1200000">0</span>
+        <span class="stat-lbl">Farmers Registered</span>
+      </div>
+    </div>
+    <div class="stat-div" aria-hidden="true"></div>
+
+    <!-- States Covered -->
+    <div class="stat-item clickable">
+      <div class="stat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="34" height="34">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-num" id="stat-states" data-count="28">0</span>
+        <span class="stat-lbl">States Covered</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 2b — CAROUSELS
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="carousels" aria-label="Live market intelligence">
+    <div class="carousels-overlay" aria-hidden="true"></div>
+    <div class="carousels-inner">
+      <div class="section-lbl reveal">Live Market Intelligence</div>
+      <div class="section-heading reveal">Real-Time Prices &amp; Updates</div>
+      <div class="carousels-grid reveal">
+
+        <!-- Carousel 1: Mandi Prices -->
+        <div class="carousel-box" aria-label="Live mandi price ticker">
+          <div class="carousel-hdr">
+            <h3>
+              <div class="live-pip" aria-hidden="true"></div>
+              Live Mandi Prices
+            </h3>
+            <div class="carousel-navs">
+              <button class="clickable" id="c1-prev" aria-label="Previous">&#8249;</button>
+              <button class="clickable" id="c1-next" aria-label="Next">&#8250;</button>
+            </div>
+          </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="c1-track">
+              <!-- Slide 1 -->
+              <div class="carousel-slide">
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=120&q=80" alt="Tomato" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Tomato (Hybrid)</div><div class="crop-loc">Azadpur Mandi, Delhi</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;2,400/q</div><div class="price-chg chg-up">&#9650; +8.3%</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=120&q=80" alt="Onion" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Onion (Red)</div><div class="crop-loc">Lasalgaon Mandi, Nashik</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;1,850/q</div><div class="price-chg chg-dn">&#9660; -3.1%</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=120&q=80" alt="Wheat" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Wheat (Sharbati)</div><div class="crop-loc">Khanna Mandi, Punjab</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;2,275/q</div><div class="price-chg chg-eq">&#9679; MSP</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=120&q=80" alt="Maize" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Maize (Yellow)</div><div class="crop-loc">Gulbarga Mandi, Karnataka</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;1,960/q</div><div class="price-chg chg-up">&#9650; +5.2%</div></div>
+                </div>
+              </div>
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=120&q=80" alt="Potato" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Potato (Jyoti)</div><div class="crop-loc">Agra Mandi, Uttar Pradesh</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;1,200/q</div><div class="price-chg chg-up">&#9650; +2.1%</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=120&q=80" alt="Moong Dal" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Moong Dal</div><div class="crop-loc">Indore Mandi, Madhya Pradesh</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;7,500/q</div><div class="price-chg chg-dn">&#9660; -1.5%</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=120&q=80" alt="Red Chilli" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Red Chilli (Teja)</div><div class="crop-loc">Guntur Mandi, Andhra Pradesh</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;14,200/q</div><div class="price-chg chg-up">&#9650; +11.4%</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=120&q=80" alt="Banana" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Banana (Grand Naine)</div><div class="crop-loc">Jalgaon Mandi, Maharashtra</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;2,100/q</div><div class="price-chg chg-eq">&#9679; Stable</div></div>
+                </div>
+              </div>
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=120&q=80" alt="Basmati Rice" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Basmati Rice (1121)</div><div class="crop-loc">Karnal Mandi, Haryana</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;4,800/q</div><div class="price-chg chg-up">&#9650; +6.8%</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?w=120&q=80" alt="Cauliflower" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Cauliflower</div><div class="crop-loc">Solan Mandi, Himachal Pradesh</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;800/q</div><div class="price-chg chg-dn">&#9660; -12.0%</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1567892328521-850689b91016?w=120&q=80" alt="Groundnut" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Groundnut (Bold)</div><div class="crop-loc">Rajkot Mandi, Gujarat</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;5,200/q</div><div class="price-chg chg-eq">&#9679; MSP</div></div>
+                </div>
+                <div class="price-row">
+                  <div class="price-left">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=120&q=80" alt="Coffee" class="crop-thumb" loading="lazy">
+                    <div><div class="crop-name">Coffee (Arabica Plantation)</div><div class="crop-loc">Chikmagalur, Karnataka</div></div>
+                  </div>
+                  <div class="price-right"><div class="price-amt">&#8377;9,600/q</div><div class="price-chg chg-up">&#9650; +4.5%</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-dots" id="c1-dots" aria-label="Slide navigation"></div>
+        </div>
+
+        <!-- Carousel 2: Schemes & News -->
+        <div class="carousel-box" aria-label="Government schemes and market news">
+          <div class="carousel-hdr">
+            <h3>
+              <div class="live-pip" aria-hidden="true"></div>
+              Schemes &amp; Market News
+            </h3>
+            <div class="carousel-navs">
+              <button class="clickable" id="c2-prev" aria-label="Previous">&#8249;</button>
+              <button class="clickable" id="c2-next" aria-label="Next">&#8250;</button>
+            </div>
+          </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="c2-track">
+              <!-- Slide 1 -->
+              <div class="carousel-slide">
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=150&q=80" alt="PM Kisan" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Government Scheme</div>
+                    <div class="scheme-title">PM-KISAN: &#8377;6,000 Annual Direct Support</div>
+                    <div class="scheme-desc">Direct income support for 14+ crore farmer families. 18th installment disbursement scheduled.</div>
+                  </div>
+                </div>
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=150&q=80" alt="Kharif MSP" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">MSP Update</div>
+                    <div class="scheme-title">Kharif 2026 MSP: Paddy at &#8377;2,300/Quintal</div>
+                    <div class="scheme-desc">Cabinet approves MSP hike across 14 crops with 50% guaranteed return over production cost.</div>
+                  </div>
+                </div>
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=150&q=80" alt="eNAM" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Digital Agriculture</div>
+                    <div class="scheme-title">eNAM Connect: 1,361 Unified Mandis Online</div>
+                    <div class="scheme-desc">Inter-state trading integration expanded. Real-time transparent electronic bidding active.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=150&q=80" alt="Monsoon Weather" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Weather Advisory</div>
+                    <div class="scheme-title">IMD Forecast: 108% Above-Normal Rainfall</div>
+                    <div class="scheme-desc">Widespread Kharif monsoon coverage in Maharashtra, MP and Punjab favoring oilseeds.</div>
+                  </div>
+                </div>
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=150&q=80" alt="Azadpur Mandi" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Mandi News</div>
+                    <div class="scheme-title">Azadpur Records Highest Tomato Arrivals</div>
+                    <div class="scheme-desc">4,800+ MT fresh supply stabilizes wholesale tomato rates across North Indian terminals.</div>
+                  </div>
+                </div>
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=150&q=80" alt="FPO Collective" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Market Linkage</div>
+                    <div class="scheme-title">1,200 Farmer Producer Groups Onboarded</div>
+                    <div class="scheme-desc">Collective bargaining network connects smallholder farmers directly with institutional buyers.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=150&q=80" alt="Rice Export" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Export Opportunity</div>
+                    <div class="scheme-title">Non-Basmati Rice Export Window Re-opened</div>
+                    <div class="scheme-desc">Global market access unlocks higher export parity prices for 12 lakh rice cultivators.</div>
+                  </div>
+                </div>
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=150&q=80" alt="Crop Insurance" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Insurance Scheme</div>
+                    <div class="scheme-title">PMFBY: &#8377;1.25 Lakh Cr Claims Disbursed</div>
+                    <div class="scheme-desc">Satellite &amp; drone yield assessments expedite crop insurance claims settlement in 48 hours.</div>
+                  </div>
+                </div>
+                <div class="scheme-row">
+                  <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=150&q=80" alt="Direct Sourcing" class="scheme-thumb" loading="lazy">
+                  <div class="scheme-content">
+                    <div class="scheme-tag">Direct Procurement</div>
+                    <div class="scheme-title">50,000 Farmers in Farm-to-Retail Network</div>
+                    <div class="scheme-desc">Middlemen bypassed — farmers gain 18% higher profit margins through direct supply chains.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-dots" id="c2-dots" aria-label="Slide navigation"></div>
+        </div>
+
+      </div><!-- /carousels-grid -->
+    </div><!-- /carousels-inner -->
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 3 — MAJOR CITIES (Blended & Defined Landmarks)
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="cities" aria-label="Major cities market data">
+    <div class="cities-bg" aria-hidden="true"></div>
+    <div class="cities-overlay" aria-hidden="true"></div>
+    <div class="cities-content">
+      <h2 class="reveal">Major Cities</h2>
+      <div class="city-box reveal" role="search" aria-label="City search">
+        <div class="city-search-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="search" id="city-search" placeholder="Search for your mandi or city…" aria-label="Search for your city"/>
+        </div>
+        <div class="city-detect clickable" id="detect-btn" role="button" tabindex="0" aria-label="Detect my location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Detect my location
+        </div>
+        <div class="city-popular-lbl">Popular Mandi Hubs</div>
+        <div class="cities-grid" id="cities-grid">
+          <!-- Mumbai: Gateway of India -->
+          <div class="city-card clickable" data-city="Mumbai" role="button" tabindex="0" aria-label="Mumbai market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 42 H44 M8 42 V22 L14 18 V10 H20 V18 L24 14 L28 18 V10 H34 V18 L40 22 V42"/>
+                <path d="M16 42 V26 C16 22 32 22 32 26 V42"/>
+                <path d="M20 22 Q24 18 28 22"/>
+                <circle cx="24" cy="10" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <span class="city-nm">Mumbai</span>
+          </div>
+          <!-- Delhi-NCR: India Gate -->
+          <div class="city-card clickable" data-city="Delhi-NCR" role="button" tabindex="0" aria-label="Delhi NCR market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 42 H42 M10 42 V18 L14 14 H34 L38 18 V42"/>
+                <path d="M12 14 H36 M16 10 H32 M20 6 H28"/>
+                <path d="M18 42 V26 Q24 20 30 26 V42"/>
+                <line x1="14" y1="18" x2="34" y2="18"/>
+              </svg>
+            </div>
+            <span class="city-nm">Delhi-NCR</span>
+          </div>
+          <!-- Bengaluru: Vidhana Soudha -->
+          <div class="city-card clickable" data-city="Bengaluru" role="button" tabindex="0" aria-label="Bengaluru market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 42 H44 M8 42 V24 H40 V42 M8 24 L24 12 L40 24"/>
+                <path d="M20 12 V8 Q24 4 28 8 V12"/>
+                <circle cx="24" cy="5" r="1.5" fill="currentColor"/>
+                <line x1="14" y1="28" x2="14" y2="38"/><line x1="20" y1="28" x2="20" y2="38"/><line x1="28" y1="28" x2="28" y2="38"/><line x1="34" y1="28" x2="34" y2="38"/>
+              </svg>
+            </div>
+            <span class="city-nm">Bengaluru</span>
+          </div>
+          <!-- Hyderabad: Charminar -->
+          <div class="city-card clickable" data-city="Hyderabad" role="button" tabindex="0" aria-label="Hyderabad market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 42 H42 M10 42 V8 M38 42 V8"/>
+                <path d="M8 8 Q10 4 12 8 M36 8 Q38 4 40 8"/>
+                <path d="M10 20 H38 M10 28 H38"/>
+                <path d="M16 42 V28 Q24 22 32 28 V42"/>
+                <path d="M20 20 Q24 16 28 20"/>
+              </svg>
+            </div>
+            <span class="city-nm">Hyderabad</span>
+          </div>
+          <!-- Chandigarh: Capitol / Open Hand -->
+          <div class="city-card clickable" data-city="Chandigarh" role="button" tabindex="0" aria-label="Chandigarh market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 42 H42 M10 42 V22 H38 V42 M8 22 L24 14 L40 22"/>
+                <path d="M24 14 V6 M20 6 H28"/>
+                <rect x="18" y="28" width="12" height="14" rx="1"/>
+                <line x1="24" y1="28" x2="24" y2="42"/>
+              </svg>
+            </div>
+            <span class="city-nm">Chandigarh</span>
+          </div>
+          <!-- Ahmedabad: Sidi Saiyyed / Toran -->
+          <div class="city-card clickable" data-city="Ahmedabad" role="button" tabindex="0" aria-label="Ahmedabad market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 42 H42 M12 42 V22 Q24 8 36 22 V42"/>
+                <path d="M18 42 V26 Q24 18 30 26 V42"/>
+                <path d="M24 18 V26 M24 26 L20 32 M24 26 L28 32"/>
+                <circle cx="24" cy="12" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+            <span class="city-nm">Ahmedabad</span>
+          </div>
+          <!-- Pune: Shaniwar Wada Fort Gate -->
+          <div class="city-card clickable" data-city="Pune" role="button" tabindex="0" aria-label="Pune market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 42 H44 M6 42 V16 L14 12 V42 M34 42 V12 L42 16 V42"/>
+                <path d="M14 20 H34 M14 28 H34"/>
+                <path d="M18 42 V30 Q24 24 30 30 V42"/>
+                <circle cx="24" cy="14" r="2"/>
+              </svg>
+            </div>
+            <span class="city-nm">Pune</span>
+          </div>
+          <!-- Chennai: Shore Temple Gopuram -->
+          <div class="city-card clickable" data-city="Chennai" role="button" tabindex="0" aria-label="Chennai market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 42 H42 M10 42 L14 14 H34 L38 42"/>
+                <path d="M12 34 H36 M15 26 H33 M18 18 H30"/>
+                <path d="M20 14 V8 Q24 4 28 8 V14"/>
+                <rect x="20" y="34" width="8" height="8" rx="1"/>
+              </svg>
+            </div>
+            <span class="city-nm">Chennai</span>
+          </div>
+          <!-- Kolkata: Howrah Bridge -->
+          <div class="city-card clickable" data-city="Kolkata" role="button" tabindex="0" aria-label="Kolkata market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 36 H44 M8 36 L16 12 L24 24 L32 12 L40 36"/>
+                <line x1="8" y1="12" x2="40" y2="12"/>
+                <line x1="16" y1="12" x2="16" y2="36"/><line x1="32" y1="12" x2="32" y2="36"/>
+                <path d="M4 42 Q14 38 24 42 Q34 38 44 42"/>
+              </svg>
+            </div>
+            <span class="city-nm">Kolkata</span>
+          </div>
+          <!-- Kochi: Chinese Fishing Nets -->
+          <div class="city-card clickable" data-city="Kochi" role="button" tabindex="0" aria-label="Kochi market prices">
+            <div class="city-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 42 H44 M12 42 L28 14 M28 14 L42 28"/>
+                <path d="M28 14 L20 26 M34 20 L24 34"/>
+                <path d="M28 14 L10 20 Q6 30 14 36"/>
+                <path d="M4 44 Q14 40 24 44 Q34 40 44 44"/>
+              </svg>
+            </div>
+            <span class="city-nm">Kochi</span>
+          </div>
+        </div>
+        <a class="view-all-link clickable" href="#" id="view-all-link">View All 120+ Mandi Hubs &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 4 — NEWEST UPDATES
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="updates" aria-label="Newest market updates">
+    <div class="updates-bg" aria-hidden="true"></div>
+    <div class="updates-overlay" aria-hidden="true"></div>
+    <div class="updates-inner">
+      <div class="updates-hdr reveal">
+        <h2>Newest Updates</h2>
+        <div class="live-badge">
+          <div class="live-pip" aria-hidden="true"></div>
+          <span>Auto-refreshing every 30s</span>
+          <div class="live-lbl">LIVE</div>
+        </div>
+      </div>
+      <div class="updates-grid reveal" id="updates-grid" aria-live="polite" aria-label="Live price updates">
+        <!-- JS populated -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECTION 5 — FOOTER
+  ══════════════════════════════════════════════════════════════ -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" class="clickable">About FairCrop</a></li>
+          <li><a href="#" class="clickable">Brand</a></li>
+          <li><a href="#" class="clickable">Associations</a></li>
+          <li><a href="#" class="clickable">Our Mission</a></li>
+          <li><a href="#" class="clickable">Partnerships</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#" class="clickable">Terms Of Service</a></li>
+          <li><a href="#" class="clickable">Commercial</a></li>
+          <li><a href="#" class="clickable">Privacy</a></li>
+          <li><a href="#" class="clickable">Report Abuse</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#" class="clickable">&#120143; / Twitter</a></li>
+          <li><a href="#" class="clickable">LinkedIn</a></li>
+          <li><a href="#" class="clickable">Instagram</a></li>
+          <li><a href="#" class="clickable">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="footer-brand">
+        <div class="footer-logo" aria-label="FairCrop">
+          <span class="fl-fai">Fai</span><span class="fl-rc">rC</span><span class="fl-rop">rop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-mid">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span class="footer-copy">All rights reserved. Copyright &copy; 2026 FairCrop</span>
+    </div>
+
+    <div class="footer-disclaimer" role="note" aria-label="Translation disclaimer">
+      <div class="disc-label">Translation<br>Disclaimer</div>
+      <p class="disc-text">Translations of the content into languages other than English are generated using automated tools and may not always be accurate. These translations are provided for informational purposes only and should not be considered authoritative.</p>
+    </div>
+
+    <div class="footer-bottom">
+      <span>Built for Smart India Hackathon 2026 &nbsp;&middot;&nbsp; Problem Statement: Strengthening Market Linkages &amp; Price Discovery for Farmers</span>
+      <span>SIH-1693 &nbsp;&middot;&nbsp; Ministry of Agriculture &amp; Farmers Welfare</span>
+    </div>
+  </footer>
+  </main><!-- /main -->
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/portal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
