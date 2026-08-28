@@ -1,8 +1,6 @@
 # 🌱 FairCrop.in — Strengthening Market Linkages & Price Discovery for Farmers
 
 <div align="center">
-  <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=1200&q=80" alt="FairCrop Banner" width="100%" style="border-radius: 12px; max-height: 280px; object-fit: cover;" />
-  <br/><br/>
   <h3>Smart India Hackathon (SIH 2026) — Problem Statement ID: SIH-1693</h3>
   <p><strong>Theme:</strong> Agriculture, FoodTech & Rural Development | <strong>Category:</strong> Software | <strong>Team:</strong> METERE</p>
   <p><em>An intelligent, transparent, and multilingual agricultural marketplace connecting Indian farmers directly to verified institutional buyers, e-NAM price discovery, and risk-free Escrow settlements.</em></p>
